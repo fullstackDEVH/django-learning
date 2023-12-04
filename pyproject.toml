@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "velociti-be"
+version = "0.1.0"
+description = ""
+authors = ["wd Yang <wdyang97@gmail.com>"]
+readme = "README.md"
+packages = [{include = "velociti_be"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+djangorestframework = "3.14.0"
+python-dotenv = "^1.0.0"
+psycopg2-binary = "^2.9.9"
+pillow = "^10.1.0"
+djangorestframework-simplejwt = "^5.3.1"
+django-rest-swagger = "^2.2.0"
+pyyaml = "^6.0.1"
+django = "4.0"
+drf-yasg = "^1.21.7"
+
+[tool.poetry.group.dev.dependencies]
+yes = "^0.0.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
