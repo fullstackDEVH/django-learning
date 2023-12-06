@@ -7,12 +7,12 @@ from apps.engine.schemas.enum_type import SystemRoleEnum
 class UserManager(BaseUserManager):
     """Manager for user profiles"""
 
-    def create_user(self, email, username, password=None):
+    def create_user(self, email, username, password=None, system_role=SystemRoleEnum.USER.value):
         if not email:
             raise ValueError('Users must have an email')
 
         email = self.normalize_email(email)
-        user = self.model(email=email, username=username, system_role=SystemRoleEnum.SUPER_ADMIN.value)
+        user = self.model(email=email, username=username, system_role=system_role)
 
         user.set_password(password)
         user.save(using=self._db)
@@ -20,7 +20,7 @@ class UserManager(BaseUserManager):
         return user
 
     def create_superuser(self, email, username, password):
-        user = self.create_user(email, username, password)
+        user = self.create_user(email, username, password, system_role=SystemRoleEnum.SUPER_ADMIN.value)
 
         user.is_superuser = True
         user.is_staff = True

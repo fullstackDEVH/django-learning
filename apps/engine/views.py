@@ -1,19 +1,20 @@
-from rest_framework.views import APIView
+from rest_framework.generics import GenericAPIView
 from rest_framework.response import Response
+from rest_framework import serializers, status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.parsers import JSONParser, MultiPartParser, FormParser
 from .schemas.user import User
-from .serializers import UserProfileSerializer
-from rest_framework import serializers, status
+from .serializers import UserProfileSerializer, UserAllProfileSerializer
 
 
-class RegisterUserView(APIView):
+class RegisterUserView(GenericAPIView):
     parser_classes = [JSONParser, MultiPartParser, FormParser]
-    username = serializers.CharField()
-    password = serializers.CharField()
-    email = serializers.CharField()
+    serializer_class = UserProfileSerializer  # Specify the serializer class
 
     def post(self, request):
+        """
+        Create a new user.
+        """
         # if email is already in use
         if User.objects.filter(email=request.data['email']).exists():
             return Response({'error': 'Email already registered'}, status=status.HTTP_400_BAD_REQUEST)
@@ -26,12 +27,13 @@ class RegisterUserView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-class UserView(APIView):
+class UserView(GenericAPIView):
     permission_classes = (IsAuthenticated,)
     parser_classes = [JSONParser, MultiPartParser, FormParser]
+    serializer_class = UserAllProfileSerializer  # Specify the serializer class
 
     def get(self, request):
-        serializer = UserProfileSerializer(request.user, many=False)
+        serializer = UserAllProfileSerializer(request.user, many=False)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     # update user profile image
@@ -42,8 +44,9 @@ class UserView(APIView):
         return Response({'message': 'Image updated'}, status=status.HTTP_200_OK)
 
 
-class AllUsersView(APIView):
+class AllUsersView(GenericAPIView):
     permission_classes = (IsAuthenticated,)
+    serializer_class = UserProfileSerializer  # Specify the serializer class
 
     def get(self, request):
         users = User.objects.all()
