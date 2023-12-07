@@ -13,9 +13,7 @@ import os
 from datetime import timedelta
 from pathlib import Path
 
-from django.core.signals import setting_changed
 from dotenv import load_dotenv
-from rest_framework_simplejwt.utils import format_lazy
 
 load_dotenv('.env')
 

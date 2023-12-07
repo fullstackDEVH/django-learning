@@ -39,7 +39,6 @@ class User(AbstractBaseUser, PermissionsMixin):
         choices=SystemRoleEnum.choices(),
         default=SystemRoleEnum.USER.value,
     )
-    hashed_password = models.CharField(max_length=256)
     fullname = models.CharField(max_length=256)
     phone_number = models.CharField(max_length=16)
     birthday = models.DateField(auto_now_add=True)

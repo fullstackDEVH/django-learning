@@ -1,4 +1,4 @@
-from enum import Enum
+from apps.engine.schemas import Enum
 
 
 class EnumType(str, Enum):

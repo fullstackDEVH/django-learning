@@ -5,7 +5,7 @@ from rest_framework_simplejwt.views import (
     TokenVerifyView,
 )
 
-from .views import (
+from apps.engine.views import (
     AllUsersView,
     UserView,
     RegisterUserView,
@@ -24,9 +24,6 @@ urlpatterns = [
     path("token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
     path("token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
     path("token/verify/", TokenVerifyView.as_view(), name="token_verify"),
-
-
-    ## api for activities 
     path("activities/", ActivitiesListAPIView.as_view(), name="api-activities-list"),
     path('activities/<uuid:user_id>/user/', UserActivitiesAPIView.as_view(), name='api-user-activities'),
     path(
