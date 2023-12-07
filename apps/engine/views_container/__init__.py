@@ -13,14 +13,47 @@ from rest_framework.generics import (
     UpdateAPIView,
     DestroyAPIView,
 )
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from rest_framework_simplejwt.views import TokenObtainPairView
 from ..schemas.user import User
 from ..serializers_container.activities import (
     Activities,
-    ActivitiesSerializer
+    ActivitiesSerializer,
+    ActivitiesCreateSerializer
 )
 from ..serializers_container.user import (
+    IsAdminUser,
     UserRegisterSerializer,
     UserLoginSerializer,
-    UserProfileSerializer,
-    IsAdminUser
+    UserProfileSerializer
+)
+from ..serializers_container.notifications import (
+    Notifications,
+    NotificationsSerializer,
+    NotificationsCreateSerializer
+)
+
+from ..serializers_container.staking import (
+    Staking,
+    StakingSerializer
+)
+
+from ..serializers_container.user_staking import (
+    UserStaking,
+    UserStakingSerializer
+)
+
+from ..serializers_container.transaction import (
+    Transaction,
+    TransactionSerializer
+)
+
+from ..serializers_container.reward import (
+    Reward,
+    RewardSerializer
+)
+
+from ..serializers_container.finan_transac import (
+    FinancialTransactions,
+    FinancialTransactionsSerializer
 )
