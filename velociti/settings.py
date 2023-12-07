@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework_swagger',
     'rest_framework',
+    'rest_framework.authtoken',
     'drf_yasg',
     'rest_framework_simplejwt',
     'apps.engine'
@@ -89,11 +90,12 @@ DATABASES = {
         "PORT": os.environ.get('DB_PORT'),
     }
 }
+
 AUTH_USER_MODEL = 'engine.User'
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=2),
     'ROTATE_REFRESH_TOKENS': False,
     'BLACKLIST_AFTER_ROTATION': True,
 
@@ -113,6 +115,36 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_REFRESH_EXP_CLAIM': 'refresh_exp',
     'SLIDING_TOKEN_LIFETIME': timedelta(minutes=5),
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
+}
+
+
+# SWAGGER_SETTINGS = {
+#     "SECURITY_DEFINITIONS": {
+#         "JWT [Bearer {JWT}]": {
+#             "name": "Authorization",
+#             "type": "apiKey",
+#             "in": "header",
+#         }
+#     },
+#     "USE_SESSION_AUTH": False,
+# }
+SWAGGER_SETTINGS = {
+    "SECURITY_DEFINITIONS": {
+        "Bearer": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
+    },
+    "USE_SESSION_AUTH": False,
+}
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        # 'rest_framework.authentication.TokenAuthentication',  # <-- And here
+    ],
 }
 
 # Password validation

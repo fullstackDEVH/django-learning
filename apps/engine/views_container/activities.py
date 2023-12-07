@@ -7,25 +7,26 @@ from apps.engine.views_container import (
     DestroyAPIView,
     RetrieveAPIView,
     ActivitiesSerializer,
-    LimitOffsetPagination
+    LimitOffsetPagination,
+    ActivitiesCreateSerializer
 )
 
 
 class ActivitiesListAPIView(ListAPIView):
     queryset = Activities.objects.all()
     serializer_class = ActivitiesSerializer
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [permissions.IsAuthenticated]
 
 
 class ActivitiesDetailAPIView(RetrieveAPIView):
     queryset = Activities.objects.all()
     serializer_class = ActivitiesSerializer
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [permissions.IsAuthenticated]
 
 
 class ActivitiesCreateAPIView(CreateAPIView):
     queryset = Activities.objects.all()
-    serializer_class = ActivitiesSerializer
+    serializer_class = ActivitiesCreateSerializer
     permission_classes = [permissions.IsAuthenticated]
 
     # override the default method create
