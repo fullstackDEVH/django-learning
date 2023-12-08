@@ -16,10 +16,11 @@ class Staking(models.Model):
     contract_term = models.PositiveIntegerField()
     desc = models.TextField()
     max_out = models.PositiveIntegerField()
-    amount = models.DecimalField(max_digits=15, decimal_places=2)
+    amount = models.PositiveIntegerField()
     asset = models.CharField(max_length=256)
-    period = models.PositiveIntegerField()
+    period = models.PositiveIntegerField(default=24)
     profit_rate = models.PositiveIntegerField()
+    duration = models.PositiveIntegerField()
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

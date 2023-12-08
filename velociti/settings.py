@@ -94,8 +94,8 @@ DATABASES = {
 AUTH_USER_MODEL = 'engine.User'
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=2),
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=int(os.environ.get("ACCESS_TOKEN_LIFETIME"))),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=int(os.environ.get("REFRESH_TOKEN_LIFETIME"))),
     'ROTATE_REFRESH_TOKENS': False,
     'BLACKLIST_AFTER_ROTATION': True,
 
@@ -118,16 +118,6 @@ SIMPLE_JWT = {
 }
 
 
-# SWAGGER_SETTINGS = {
-#     "SECURITY_DEFINITIONS": {
-#         "JWT [Bearer {JWT}]": {
-#             "name": "Authorization",
-#             "type": "apiKey",
-#             "in": "header",
-#         }
-#     },
-#     "USE_SESSION_AUTH": False,
-# }
 SWAGGER_SETTINGS = {
     "SECURITY_DEFINITIONS": {
         "Bearer": {
@@ -143,7 +133,6 @@ SWAGGER_SETTINGS = {
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-        # 'rest_framework.authentication.TokenAuthentication',  # <-- And here
     ],
 }
 

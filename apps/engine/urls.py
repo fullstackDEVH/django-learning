@@ -54,6 +54,12 @@ from apps.engine.views import (
     RewardDeleteAPIView,
     RewardDetailAPIView,
     RewardUpdateAPIView,
+
+    SystemInformationListAPIView,
+    SystemInformationCreateAPIView,
+    SystemInformationDeleteAPIView,
+    SystemInformationDetailAPIView,
+    SystemInformationUpdateAPIView,
 )
 
 urlpatterns = [
@@ -132,7 +138,7 @@ urlpatterns = [
         name="api-staking-delete",
     ),
 
-    path("user-staking/", UserStakingListAPIView.as_view(), name="api-Staking-list"),
+    path("user-staking/", UserStakingListAPIView.as_view(), name="api-user-staking-list"),
     path(
         "user-staking/<uuid:pk>/",
         UserStakingDetailAPIView.as_view(),
@@ -154,71 +160,94 @@ urlpatterns = [
         name="api-user-staking-delete",
     ),
 
-    path("transaction/", TransactionListAPIView.as_view(), name="api-Staking-list"),
+    path("transaction/", TransactionListAPIView.as_view(), name="api-transaction-list"),
     path(
         "transaction/<uuid:pk>/",
         TransactionDetailAPIView.as_view(),
-        name="api-user-staking-detail",
+        name="api-transaction-detail",
     ),
     path(
         "transaction/create/",
         TransactionCreateAPIView.as_view(),
-        name="api-user-staking-create",
+        name="api-transaction-create",
     ),
     path(
         "transaction/<uuid:pk>/update/",
         TransactionUpdateAPIView.as_view(),
-        name="api-user-staking-update",
+        name="api-transaction-update",
     ),
     path(
         "transaction/<uuid:pk>/delete/",
         TransactionDeleteAPIView.as_view(),
-        name="api-user-staking-delete",
+        name="api-transaction-delete",
     ),
 
 
-    path("financial-transaction/", FinancialTransactionsListAPIView.as_view(), name="api-Staking-list"),
+    path("financial-transaction/", FinancialTransactionsListAPIView.as_view(), name="financial-transaction-list"),
     path(
         "financial-transaction/<uuid:pk>/",
         FinancialTransactionsDetailAPIView.as_view(),
-        name="api-user-staking-detail",
+        name="api-financial-transaction-detail",
     ),
     path(
         "financial-transaction/create/",
         FinancialTransactionsCreateAPIView.as_view(),
-        name="api-user-staking-create",
+        name="api-financial-transaction-create",
     ),
     path(
         "financial-transaction/<uuid:pk>/update/",
         FinancialTransactionsUpdateAPIView.as_view(),
-        name="api-user-staking-update",
+        name="api-financial-transaction-update",
     ),
     path(
         "financial-transaction/<uuid:pk>/delete/",
         FinancialTransactionsDeleteAPIView.as_view(),
-        name="api-user-staking-delete",
+        name="api-financial-transaction-delete",
     ),
 
     
-    path("reward/", RewardListAPIView.as_view(), name="api-Staking-list"),
+    path("reward/", RewardListAPIView.as_view(), name="api-reward-list"),
     path(
         "reward/<uuid:pk>/",
         RewardDetailAPIView.as_view(),
-        name="api-user-staking-detail",
+        name="api-reward-detail",
     ),
     path(
         "reward/create/",
         RewardCreateAPIView.as_view(),
-        name="api-user-staking-create",
+        name="api-reward-create",
     ),
     path(
         "reward/<uuid:pk>/update/",
         RewardUpdateAPIView.as_view(),
-        name="api-user-staking-update",
+        name="api-reward-update",
     ),
     path(
         "reward/<uuid:pk>/delete/",
         RewardDeleteAPIView.as_view(),
-        name="api-user-staking-delete",
+        name="api-reward-delete",
+    ),
+
+
+    path("system-information/", SystemInformationListAPIView.as_view(), name="api-system-information-list"),
+    path(
+        "system-information/<uuid:pk>/",
+        SystemInformationDetailAPIView.as_view(),
+        name="api-system-information-detail",
+    ),
+    path(
+        "system-information/create/",
+        SystemInformationCreateAPIView.as_view(),
+        name="api-system-information-create",
+    ),
+    path(
+        "system-information/<uuid:pk>/update/",
+        SystemInformationUpdateAPIView.as_view(),
+        name="api-system-information-update",
+    ),
+    path(
+        "system-information/<uuid:pk>/delete/",
+        SystemInformationDeleteAPIView.as_view(),
+        name="api-system-information-delete",
     ),
 ]

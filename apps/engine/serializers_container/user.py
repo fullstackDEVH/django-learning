@@ -9,7 +9,7 @@ class IsAdminUser(BasePermission):
             request.user
             and request.user.is_authenticated
             and request.user.system_role
-            in [SystemRoleEnum.ADMIN.value, SystemRoleEnum.SUPER_ADMIN.value]
+            in [SystemRoleEnum.ADMIN.value]
         )
 
 
