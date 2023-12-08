@@ -57,3 +57,8 @@ from ..serializers_container.finan_transac import (
     FinancialTransactions,
     FinancialTransactionsSerializer
 )
+
+from ..serializers_container.system_information import (
+    SystemInformation,
+    SystemInformationSerializer
+)

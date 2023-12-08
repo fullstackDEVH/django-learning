@@ -1,5 +1,5 @@
 from apps.engine.schemas import (
-    models, uuid
+    models, uuid, timezone
 )
 from apps.engine.schemas.enum_type import UserStakingStatusEnum
 from apps.engine.schemas.staking import Staking
@@ -15,6 +15,7 @@ class UserStaking(models.Model):
         choices=UserStakingStatusEnum.choices(),
         default=UserStakingStatusEnum.STAKED.value,
     )
+    reset_period = models.DateTimeField(default=timezone.now)
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

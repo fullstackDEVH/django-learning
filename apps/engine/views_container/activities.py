@@ -37,7 +37,7 @@ class ActivitiesCreateAPIView(CreateAPIView):
 
 class ActivitiesUpdateAPIView(UpdateAPIView):
     queryset = Activities.objects.all()
-    serializer_class = ActivitiesSerializer
+    serializer_class = ActivitiesCreateSerializer
     permission_classes = [permissions.IsAuthenticated]
 
 

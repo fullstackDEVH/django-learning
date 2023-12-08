@@ -21,7 +21,6 @@ class StakingEnum(EnumType):
 
 class SystemRoleEnum(EnumType):
     ADMIN = "ADMIN"
-    SUPER_ADMIN = "SUPER_ADMIN"
     USER = "USER"
 
 

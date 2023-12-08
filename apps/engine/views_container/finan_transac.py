@@ -15,6 +15,7 @@ class FinancialTransactionsListAPIView(ListAPIView):
     queryset = FinancialTransactions.objects.all()
     serializer_class = FinancialTransactionsSerializer
     permission_classes = [permissions.AllowAny]
+    pagination_class = LimitOffsetPagination
 
 
 class FinancialTransactionsDetailAPIView(RetrieveAPIView):

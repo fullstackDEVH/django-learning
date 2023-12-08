@@ -20,7 +20,7 @@ class UserManager(BaseUserManager):
         return user
 
     def create_superuser(self, email, username, password):
-        user = self.create_user(email, username, password, system_role=SystemRoleEnum.SUPER_ADMIN.value)
+        user = self.create_user(email, username, password, system_role=SystemRoleEnum.ADMIN.value)
 
         user.is_superuser = True
         user.is_staff = True
