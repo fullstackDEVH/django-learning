@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'drf_yasg',
     'rest_framework_simplejwt',
-    'apps.engine'
+    'django_crontab',
+    'apps.engine',
 ]
 
 MIDDLEWARE = [
@@ -116,6 +117,11 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_LIFETIME': timedelta(minutes=5),
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 }
+
+
+CRONJOBS = [
+    ('*2 * * * *', 'apps.engine.cron.my_scheduled_job')
+]
 
 
 SWAGGER_SETTINGS = {
